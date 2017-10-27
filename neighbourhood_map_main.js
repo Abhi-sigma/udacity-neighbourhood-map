@@ -1,6 +1,6 @@
 var viewModel = function() {
 
-            const places_object = {
+            var places_object = {
                 "kathmandu": [
 
                     {
@@ -97,7 +97,7 @@ var viewModel = function() {
                 ]
 
 
-            }
+            };
 
 
 
@@ -108,7 +108,7 @@ var viewModel = function() {
                 "temple": "https://d30y9cdsu7xlg0.cloudfront.net/png/2364-200.png",
                 "heritage": "http://neo-environmental.co.uk/wp-content/uploads/heritage_icon.png",
                 "market": "https://d30y9cdsu7xlg0.cloudfront.net/png/100392-200.png"
-            }
+            };
 
             // observable to hold location when the initial list is filtered
             self.filtered_list = ko.observableArray();
@@ -125,7 +125,7 @@ var viewModel = function() {
             // get all locations on script loads
             get_all_location(self.all_locations, places_object);
             // declaring variable to hold array of markers
-            self.visible_marker_array
+            self.visible_marker_array=[];
             self.onchangefunction = function() {
                 // remove any previously filtered locations
                 $(".filtered_locations").children("div").remove();
@@ -153,7 +153,7 @@ var viewModel = function() {
                             // push the location inside filtered list
                             self.filtered_list.push(place_object);
                             // highlight the search term
-                            highlight_search_term(".filtered_locations",self.inputvalue())
+                            highlight_search_term(".filtered_locations",self.inputvalue());
                             // some result has occured,hide initial list
                             self.main_locations(false);
                             // make a marker of the selected location
@@ -192,8 +192,8 @@ var viewModel = function() {
 
                 }
 
-        }
-    }
+        };
+    };
 
 
         var VM = new viewModel();
@@ -215,15 +215,17 @@ var viewModel = function() {
 
             console.log(places_object);
             // loop through all places in places_object
-            for (place in places_object) {
+            for (var place in places_object) {
+                if(places_object.hasOwnProperty(place)){
                 console.log(place);
                 // hold a array of all locations inside a place
-                number_of_places = places_object[place][0].locations;
+                var number_of_places = places_object[place][0].locations;
                 console.log(number_of_places);
                 for (i = 0; i < number_of_places.length; i++) {
                     console.log(observable_array());
-                    observable_array.push(number_of_places[i])
+                    observable_array.push(number_of_places[i]);
                 }
+            }
             }
         }
 
@@ -266,7 +268,7 @@ var viewModel = function() {
                 visible_marker_array.push(marker);
                 // map.setCenter(item[1].position);
             });
-            return visible_marker_array
+            return visible_marker_array;
         }
 
          /* @description removes markers on the map from a observable array of locations
@@ -314,9 +316,7 @@ var viewModel = function() {
                 // console.log(marker_lat);
                 // console.log(marker_lng);
                 if (marker_lat == array[i].position.lat() && marker_lng == array[i].position.lng()) {
-                    return array[i]
-                    console.log("marker"+array[i])
-                    break
+                    return array[i];
 
                 }
 
@@ -381,7 +381,7 @@ var viewModel = function() {
                     infowindow.setContent(info_content);
                     // set full content for associated dom
                     infowindow.contentText = "<p class='wikiheading' >Data provided by Wikipedia</p>" + content
-
+;
 
                 },
                 // in case it fails
@@ -425,7 +425,7 @@ var viewModel = function() {
                 $(".search-section").toggle("display");
 
             });
-        })
+        });
 
        //callback function for google maps load 
         function initMap() {
