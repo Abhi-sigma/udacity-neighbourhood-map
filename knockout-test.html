@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>My Visit to Kathmandu</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Prociono">
+    <link rel="stylesheet" type="text/css" href="neighbourhood_map_main.css">
+
+</head>
+<body>
+    <div class="full-height">
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="navbar navbar-inverse">
+                    <div class="navbar-brand">My Places</li>
+                </nav>
+                <div class="closing_icon glyphicon glyphicon-search"></div>
+                    <div class="col-md-4 col-sm-4 col-lg-4 search-section">
+                            <section class="search-section">
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-8 col-lg-8">
+                                        <input class="form-control input-less-width" data-bind="textInput:inputvalue" placeholder="Search Location" type="search">
+
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-lg-4">
+                                        
+                                    </div>
+                                </div>
+                                <div class="all_locations" data-bind="foreach:all_locations,visible:main_locations">
+                                        <div class="col-md-8 col-sm-8">
+                                            <li data-bind="text:$data[0].name,click:window.animate_marker_on_click.bind($data)">
+                                            </li>
+                                        </div>
+                                        <div class="col-md-4 col-lg-4">
+                                            <img class="icon" data-bind="attr: {src: VM.mapper[$data[2].type]}">
+                                        </div>
+                                </div>
+
+                                <div class="filtered_locations" data-bind="foreach:filtered_list">
+                                    <div class="col-md-8">
+                                        <li data-bind="text:$data[0].name,click:window.animate_marker_on_click.bind($data)"></li>
+                                    </div>
+                                    <div class="col-md-4">
+                                            <img class="icon" data-bind="attr: {src: VM.mapper[$data[2].type]}">
+                                    </div>
+                                </div>
+                                <div class="noresults" data-bind="visible:filtered_list().length == 0 && nonresults()==true 
+                                && main_locations()==false">No Results Found!</div>
+                            </search-section>
+                        </div>
+                <div class="col-md-8 col-sm-8 col-lg-8 full-height">
+                    <div class="info" id="info" data-bind="html:mapinfo"></div>
+                    <div id="map">maps</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzyd1PkEJmhb-9AYmwvuF3vsIfeM946UM&callback=initMap" async defer></script>
+     <script src="neighbourhood_map_main.js"></script>
+
+
+</body>
+
+</html>

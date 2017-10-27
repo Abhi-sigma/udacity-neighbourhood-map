@@ -1,0 +1,105 @@
+ html,
+        body,
+        .full-height {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'prociono',serif;
+        }
+
+        #map {
+            height: 500px;
+            /*float:right;*/
+            /*position:absolute;*/
+            /*top:100px;*/
+            /*left:50%;*/
+            width: 100%;
+        }
+        .all_locations li{
+            list-style: none;
+            height:40px;
+            width:100%;
+        }
+
+        }
+        .filtered_locations li {
+            list-style: none;
+            height:40px;
+            width:100%;
+        }
+
+        .icon {
+            width: 50px;
+            height: 35px;
+        }
+        
+        @media screen and (max-width:767px){
+        .icon{
+                display:none;
+
+            }
+
+        div .closing_icon{
+           display:block;
+            
+        }
+
+        .search-section{
+            display:none;
+             background-color:  rgba(0, 0, 0, 0.13);
+        }
+
+        .filtered_locations li {
+            list-style: none;
+            height:auto;
+            width:50%;
+        }
+
+        .all_locations li{
+            list-style: none;
+            height:auto;
+            width:50%;
+        }
+
+            
+        }
+
+        .wikiheading{
+            font-size: 2.5rem;
+        }
+
+
+        .search-section {}
+        .info{
+            width:100%;
+            max-height:200px;
+            min-height:50px;
+            overflow:auto;
+            font-size:12px;
+            text-align: justify;
+            font-family: sans-serif;
+            font-weight: bolder;
+            /*margin:10px 5px 20px 5px;*/
+            margin:0 auto;
+            border:2px solid aquamarine;
+        }
+         div .input-less-width{
+            width:100%;
+            float:left;
+            height:28px;
+            margin-right:10px;
+            margin-bottom:5px;
+        }
+        .closing_icon{
+            width: 35px;
+            margin: 2px 5px;
+            float: right;
+            font-size: 27px;
+            position: absolute;
+            left: 0px;
+            z-index: 200; 
+            top:90px;
+            transform: rotate(90deg);
+            display:none;
+            min-height: 50px;
+        }
