@@ -18,6 +18,7 @@ var viewModel = function() {
                                     "type": "temple"
                                 }
                             ],
+                            // add an array of objects to add location
                             [{
                                     "name": "Swayambhunath"
                                 },
@@ -236,7 +237,12 @@ var viewModel = function() {
         */
         function make_marker(array) {
             console.log(array);
+            // initialise a empty array
+            // this is an array that always hold all the markers
+            // currently on screen
             var visible_marker_array = [];
+            // loop through each item in observable array and push
+            // inside visible marker array
             array.forEach(function(item) {
                 var marker = new google.maps.Marker({
                     position: item[1].position,
