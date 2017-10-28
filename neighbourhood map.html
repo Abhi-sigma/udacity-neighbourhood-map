@@ -29,51 +29,53 @@
         <div class="container-fluid">
             <div class="row">
                 <nav class="navbar navbar-inverse">
-                    <div class="navbar-brand">My Places</li>
+                    <div class="navbar-brand">My Places</div>
                 </nav>
-                <div class="closing_icon glyphicon glyphicon-search"></div>
+        <div class="closing_icon glyphicon" data-bind="click:window.toggleIcon,css:{'glyphicon-remove-circle':isTabsCollapsed() == true,'glyphicon-search':isTabsCollapsed()==false},visible:isMapError() == false"></div>
                     <div class="col-md-4 col-sm-4 col-lg-4 search-section">
-                            <section class="search-section">
+                            <section class="search-section" data-bind="visible:isMapError() == false">
                                 <div class="row">
                                     <div class="col-md-8 col-sm-8 col-lg-8">
-                                        <input class="form-control input-less-width" data-bind="textInput:inputvalue" placeholder="Search Location" type="search">
+                                        <input class="form-control input-less-width" data-bind="textInput:inputValue" placeholder="Search Location" type="search">
 
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-lg-4">
-                                        
+                                
                                     </div>
                                 </div>
-                                <div class="all_locations" data-bind="foreach:all_locations,visible:main_locations">
+                                <div class="all_locations" data-bind="foreach:allLocations,visible:mainLocations">
                                         <div class="col-md-8 col-sm-8">
-                                            <li data-bind="text:$data[0].name,click:window.animate_marker_on_click.bind($data)">
-                                            </li>
+                                            <div data-bind="text:$data[0].name,click:window.animateMarkerOnClick.bind($data)">
+                                            </div>
                                         </div>
                                         <div class="col-md-4 col-lg-4">
                                             <img class="icon" data-bind="attr: {src: VM.mapper[$data[2].type]}">
                                         </div>
                                 </div>
 
-                                <div class="filtered_locations" data-bind="foreach:filtered_list">
+                                <div class="filtered_locations" data-bind="foreach:filteredList">
                                     <div class="col-md-8">
-                                        <li data-bind="text:$data[0].name,click:window.animate_marker_on_click.bind($data)"></li>
+                                        <div class="location_name" data-bind="text:$data[0].name,click:window.animateMarkerOnClick.bind($data)"></div>
                                     </div>
                                     <div class="col-md-4">
                                             <img class="icon" data-bind="attr: {src: VM.mapper[$data[2].type]}">
                                     </div>
                                 </div>
-                                <div class="noresults" data-bind="visible:filtered_list().length == 0 && nonresults()==true 
-                                && main_locations()==false">No Results Found!</div>
-                            </search-section>
+                                <div class="noresults" data-bind="visible:filteredList().length == 0 && nonresults()==true 
+                                && mainLocations()==false">No Results Found!</div>
+                            </section>
                         </div>
                 <div class="col-md-8 col-sm-8 col-lg-8 full-height">
-                    <div class="info" id="info" data-bind="html:mapinfo"></div>
-                    <div id="map">maps</div>
+                    <div class="info" id="info" data-bind="html:mapinfo,visible:isMapError() == false"></div>
+                    <div id="map" data-bind="visible:isMapError() == false"></div>
+                    <div id="maperror" data-bind="html:mapError,visible:isMapError"></div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzyd1PkEJmhb-9AYmwvuF3vsIfeM946UM&callback=initMap" async defer></script>
-     <script src="neighbourhood_map_main.js"></script>
+    <script src="neighbourhood_map_main.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzyd1PkEJmhb-9AYmwvuF3vsIfeM946UM&callback=initMap" async defer onerror="mapError()"></script>
+     
 
 
 </body>

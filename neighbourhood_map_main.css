@@ -103,3 +103,8 @@
             display:none;
             min-height: 50px;
         }
+
+        .error-text{
+            font-size: 3rem;
+            color:red;
+        }
